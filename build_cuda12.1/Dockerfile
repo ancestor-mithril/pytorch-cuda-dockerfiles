@@ -100,7 +100,7 @@ ENTRYPOINT ["tini", "-g", "--"]
 CMD ["start-notebook.sh"]
 COPY jupyter_server_config.py /etc/jupyter/
 USER root
-RUN chmod 777 /usr/local/bin/start.sh /usr/local/bin/start-notebook.sh /usr/local/bin/start-singleuser.sh && \
+RUN chmod 777 /usr/local/bin/start-notebook.sh && \
         sed -re "s/c.ServerApp/c.NotebookApp/g" \
         /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
         fix-permissions /etc/jupyter/
