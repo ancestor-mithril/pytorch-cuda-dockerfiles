@@ -1,3 +1,10 @@
 # pytorch-cuda-dockerfiles
 
 Adapted from https://github.com/iot-salzburg/gpu-jupyter and specialised the Dockerfile.
+
+## Usage
+```
+git clone https://github.com/ancestor-mithril/pytorch-cuda-dockerfiles.git
+cd pytorch-cuda-dockerfiles/build_cuda12.1
+docker buildx build --network=host -t cuda12.1:py3.11_torch2.2.2 .
+```
