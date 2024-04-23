@@ -45,10 +45,6 @@ else
 fi
 
 
-# NOTE: This hook will run as the user the container was started with!
-# shellcheck disable=SC1091
-source /usr/local/bin/run-hooks.sh /usr/local/bin/start-notebook.d
-
 # If the container started as the root user, then we have permission to refit
 # the jovyan user, and ensure file permissions, grant sudo rights, and such
 # things before we run the command passed to start.sh as the desired user
