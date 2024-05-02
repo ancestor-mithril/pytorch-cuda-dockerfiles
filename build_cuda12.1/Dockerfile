@@ -128,7 +128,7 @@ Run conda update -n base -c conda-forge conda --yes && \
         pip install matplotlib --no-cache-dir && \
         # conda install --yes -c conda-forge opencv && \
         pip install opencv-python --no-cache-dir && \
-        conda install --yes -c conda-forge seaborn tensorboard ipywidgets ipympl ipyleaflet && \
+        conda install --yes -c conda-forge seaborn tensorboard ipywidgets ipympl && \
         pip install graphviz --no-cache-dir && \
         conda update --all --yes && \
         conda clean --all -f -y && \
@@ -144,8 +144,7 @@ RUN git clone https://github.com/PAIR-code/facets.git && \
         fix-permissions ${HOME}
 
 WORKDIR ${HOME}
-RUN jupyter nbextension enable --py --sys-prefix ipyleaflet && \
-        jupyter labextension install jupyterlab-plotly && \
+RUN jupyter labextension install jupyterlab-plotly && \
         jupyter labextension install @jupyter-widgets/jupyterlab-manager plotlywidget && \
         jupyter labextension install @ijmbarr/jupyterlab_spellchecker && \
         fix-permissions $CONDA_DIR && \
