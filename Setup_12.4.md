@@ -50,7 +50,7 @@ sudo apt-get -y install cudnn9-cuda-12
 # Creating docker image
 
 git clone https://github.com/ancestor-mithril/pytorch-cuda-dockerfiles.git
-cd pytorch-cuda-dockerfiles/build_cuda12.4
+cd pytorch-cuda-dockerfiles/build_cuda12.4_mini
 docker buildx build --network=host -t cuda12.4:py3.12_torch2.4.2 .
 
 # Creating docker container
