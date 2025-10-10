@@ -82,7 +82,7 @@ if [ "$(id -u)" == 0 ]; then
         fi
         # Recreate the desired user as we want it
         userdel "${NB_USER}"
-        useradd --no-log-init --home "/home/${NB_USER}" --shell /bin/bash --uid "${NB_UID}" --gid "${NB_GID}" --groups 100 "${NB_USER}"
+        useradd --no-log-init --home "/home/${NB_USER}" --shell /bin/bash --uid "${NB_UID}" --gid "${NB_GID}" --groups 110 "${NB_USER}"
     fi
     # Update the home directory if the desired user (NB_USER) is root and the
     # desired user id (NB_UID) is 0 and the desired group id (NB_GID) is 0.

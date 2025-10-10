@@ -85,15 +85,11 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         conda clean --all -f -y && \
         rm -rf ${HOME}/.cache/yarn && \
         npm cache clean --force && \
-        fix-permissions ${CONDA_DIR} && \
-        fix-permissions ${HOME} && \
         pip install torch torchvision --index-url https://download.pytorch.org/whl/cu129 --no-cache-dir && pip install timm && pip cache purge && \
         conda install --yes tensorboard wandb einops transformers scipy scikit-image && \
         conda update --all --yes && \
         conda clean --all -f -y && \
-        fix-permissions ${CONDA_DIR} && \
         pip install nnunetv2 --no-cache-dir  && pip cache purge && \
-        fix-permissions ${HOME}
 
 EXPOSE 8888
 ENTRYPOINT ["tini", "-g", "--", "start.sh"]
@@ -108,7 +104,10 @@ RUN chmod 777 /usr/local/bin/start-notebook.sh && \
         chmod 777 /usr/local/bin/start.sh && \
         sed -re "s/c.ServerApp/c.NotebookApp/g" \
         /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
-        fix-permissions /etc/jupyter/
+        fix-permissions /etc/jupyter/ && \
+        fix-permissions ${CONDA_DIR} && \
+        fix-permissions ${HOME}
+
 HEALTHCHECK  --interval=30s --timeout=3s --start-period=5s --retries=3 \
         CMD wget -O- --no-verbose --tries=1 --no-check-certificate \
         http${GEN_CERT:+s}://localhost:8888${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
