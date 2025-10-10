@@ -55,5 +55,5 @@ docker buildx build --network=host -t cuda12.4:py3.12_torch2.4.2 .
 
 # Creating docker container
 mkdir -p ~/data
-docker run --name pytorch_container --gpus all -d -it --ipc=host --network=host --user root -e GRANT_SUDO=yes -v ~/data:/home/jovyan/root/data cuda12.4:py3.12_torch2.4.2
+docker run --name pytorch_container --gpus all -d -it --ipc=host --network=host --user root -e GRANT_SUDO=yes -v ~/data:/home/jovyan/root/data cuda12.4:py3.13_torch2.6.0
 ```

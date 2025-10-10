@@ -3,7 +3,7 @@ ARG BASE_IMAGE=nvidia/cuda:${CUDA_VERSION}-cudnn-runtime-ubuntu22.04
 FROM $BASE_IMAGE
 
 ARG CUDA_VERSION_2=12.4
-ARG PYTHON_VERSION=3.12
+ARG PYTHON_VERSION=3.13
 ARG NB_USER="jovyan"
 ARG NB_UID="1000"
 ARG NB_GID="100"
@@ -79,7 +79,7 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         source ${CONDA_DIR}/etc/profile.d/conda.sh && \
         conda activate && \
         conda update --all --yes && \
-        conda install -c conda-forge ipython notebook jupyterhub jupyterlab jupyter_contrib_nbextensions seaborn ipywidgets opencv --yes && \
+        conda install -c conda-forge numpy ipython notebook jupyterhub jupyterlab jupyter_contrib_nbextensions seaborn ipywidgets opencv --yes && \
         jupyter notebook --generate-config && \
         jupyter lab clean && \
         conda clean --all -f -y && \
@@ -108,7 +108,7 @@ HEALTHCHECK  --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 USER ${NB_UID}
 WORKDIR ${HOME}
-Run conda install pytorch torchvision torchaudio pytorch-cuda=${CUDA_VERSION_2} -c pytorch -c nvidia --yes && \
+RUN pip install torch torchvision torchaudio && \
         conda list "^(.*torch.*)$" | tail -n+4 | awk '{ print $1 " ==" $2 }' > /opt/conda/conda-meta/pinned && \
         conda install --yes -c conda-forge tensorboard timm wandb einops transformers && \
         conda update --all --yes && \
