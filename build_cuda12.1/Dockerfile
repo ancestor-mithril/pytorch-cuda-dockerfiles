@@ -1,5 +1,5 @@
 ARG CUDA_VERSION=12.1.0
-ARG BASE_IMAGE=nvidia/cuda:${CUDA_VERSION}-cudnn8-devel-ubuntu22.04
+ARG BASE_IMAGE=nvidia/cuda:${CUDA_VERSION}-cudnn8-runtime-ubuntu22.04
 FROM $BASE_IMAGE
 
 ARG CUDA_VERSION_2=12.1
