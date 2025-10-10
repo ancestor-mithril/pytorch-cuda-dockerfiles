@@ -6,8 +6,8 @@ wget https://developer.download.nvidia.com/compute/cuda/12.2.2/local_installers/
 sudo sh cuda_12.2.2_535.104.05_linux.run 
 
 # Adding cuda to path
-echo 'export PATH=/usr/local/cuda-12.2/bin:$PATH' | sudo tee ~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH' >> sudo tee ~/.bashrc
+echo 'export PATH=/usr/local/cuda-12.2/bin:$PATH' | sudo tee -a ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH' >> sudo tee -a ~/.bashrc
 
 # Restart machine
 sudo reboot
