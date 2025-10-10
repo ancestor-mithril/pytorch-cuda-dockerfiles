@@ -123,16 +123,12 @@ Run conda update -n base -c conda-forge conda --yes && \
         conda config --set channel_priority strict && \
         conda update --all --yes && \
         conda update --all --yes && \
-        conda install --yes -c conda-forge cython tqdm scipy sympy pandas scikit-learn scikit-image && \
-        conda install --yes -c conda-forge matplotlib-base && \
+        conda install --yes -c conda-forge cython tqdm scipy sympy pandas scikit-learn scikit-image matplotlib-base timm wandb einops transformers numba && \
         # conda install --yes -c conda-forge matplotlib && \
         pip install matplotlib --no-cache-dir && \
-        conda install --yes -c conda-forge timm wandb && \
         # conda install --yes -c conda-forge opencv && \
         pip install opencv-python --no-cache-dir && \
-        conda install --yes -c conda-forge seaborn && \
-        conda install --yes -c conda-forge tensorboard einops transformers numba && \
-        conda install --yes -c conda-forge ipywidgets ipympl ipyleaflet && \
+        conda install --yes -c conda-forge seaborn tensorboard ipywidgets ipympl ipyleaflet && \
         pip install graphviz --no-cache-dir && \
         conda update --all --yes && \
         conda clean --all -f -y && \
