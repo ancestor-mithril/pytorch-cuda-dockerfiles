@@ -5,8 +5,8 @@ ARG BASE_IMAGE=nvidia/cuda:${CUDA_VERSION}-cudnn-${TYPE}-ubuntu24.04
 FROM $BASE_IMAGE
 
 ARG NB_USER="jovyan"
-ARG NB_UID="1000"
-ARG NB_GID="100"
+ARG NB_UID="1010"
+ARG NB_GID="110"
 # Automatically set by buildx
 ARG TARGETPLATFORM
 
@@ -86,6 +86,13 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         rm -rf ${HOME}/.cache/yarn && \
         npm cache clean --force && \
         fix-permissions ${CONDA_DIR} && \
+        fix-permissions ${HOME} && \
+        pip install torch torchvision --index-url https://download.pytorch.org/whl/cu129 && pip install timm && pip cache purge && \
+        conda install --yes tensorboard wandb einops transformers scipy scikit-image && \
+        conda update --all --yes && \
+        conda clean --all -f -y && \
+        pip install nnunetv2 && pip cache purge && \
+        fix-permissions ${CONDA_DIR} && \
         fix-permissions ${HOME}
 
 EXPOSE 8888
@@ -107,14 +114,6 @@ HEALTHCHECK  --interval=30s --timeout=3s --start-period=5s --retries=3 \
         http${GEN_CERT:+s}://localhost:8888${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
 
 USER ${NB_UID}
-WORKDIR ${HOME}
-RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cu129 && pip install timm && pip cache purge && \
-        conda install --yes tensorboard wandb einops transformers scipy scikit-image && \
-        conda update --all --yes && \
-        conda clean --all -f -y && \
-        pip install nnunetv2 && pip cache purge && \
-        fix-permissions ${CONDA_DIR} && \
-        fix-permissions ${HOME}
 
 WORKDIR /tmp
 RUN git clone https://github.com/PAIR-code/facets.git && \
@@ -123,6 +122,10 @@ RUN git clone https://github.com/PAIR-code/facets.git && \
         fix-permissions ${CONDA_DIR} && \
         MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
         fix-permissions ${HOME}
+
+ENV nnUNet_raw="${HOME}/nnUNet_raw"
+ENV nnUNet_results="${HOME}/nnUNet_results"
+ENV nnUNet_preprocessed="${HOME}/nnUNet_preprocessed"
 
 WORKDIR ${HOME}
 COPY jupyter_notebook_config.json /etc/jupyter/
