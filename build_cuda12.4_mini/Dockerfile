@@ -108,9 +108,8 @@ HEALTHCHECK  --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 USER ${NB_UID}
 WORKDIR ${HOME}
-RUN pip install torch torchvision torchaudio && \
-        conda list "^(.*torch.*)$" | tail -n+4 | awk '{ print $1 " ==" $2 }' > /opt/conda/conda-meta/pinned && \
-        conda install --yes -c conda-forge tensorboard timm wandb einops transformers && \
+RUN pip install torch torchvision torchaudio && pip install timm && \
+        conda install --yes tensorboard wandb einops transformers && \
         conda update --all --yes && \
         conda clean --all -f -y && \
         fix-permissions ${CONDA_DIR} && \
