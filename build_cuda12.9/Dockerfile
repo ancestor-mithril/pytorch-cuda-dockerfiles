@@ -87,12 +87,12 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         npm cache clean --force && \
         fix-permissions ${CONDA_DIR} && \
         fix-permissions ${HOME} && \
-        pip install torch torchvision --index-url https://download.pytorch.org/whl/cu129 && pip install timm && pip cache purge && \
+        pip install torch torchvision --index-url https://download.pytorch.org/whl/cu129 --no-cache-dir && pip install timm && pip cache purge && \
         conda install --yes tensorboard wandb einops transformers scipy scikit-image && \
         conda update --all --yes && \
         conda clean --all -f -y && \
-        pip install nnunetv2 && pip cache purge && \
         fix-permissions ${CONDA_DIR} && \
+        pip install nnunetv2 --no-cache-dir  && pip cache purge && \
         fix-permissions ${HOME}
 
 EXPOSE 8888
