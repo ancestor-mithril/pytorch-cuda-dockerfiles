@@ -122,9 +122,9 @@ RUN git clone https://github.com/PAIR-code/facets.git && \
         MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
         fix-permissions ${HOME}
 
-ENV nnUNet_raw="${HOME}/nnUNet_raw"
-ENV nnUNet_results="${HOME}/nnUNet_results"
-ENV nnUNet_preprocessed="${HOME}/nnUNet_preprocessed"
+ENV nnUNet_raw="${HOME}/root/data/nnUNet_raw"
+ENV nnUNet_results="${HOME}/root/data/nnUNet_results"
+ENV nnUNet_preprocessed="${HOME}/root/data/nnUNet_preprocessed"
 
 WORKDIR ${HOME}
 COPY jupyter_notebook_config.json /etc/jupyter/
