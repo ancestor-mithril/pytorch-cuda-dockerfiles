@@ -89,7 +89,7 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         conda install --yes tensorboard wandb einops transformers scipy scikit-image && \
         conda update --all --yes && \
         conda clean --all -f -y && \
-        pip install nnunetv2 --no-cache-dir  && pip cache purge && \
+        pip install nnunetv2 --no-cache-dir  && pip cache purge
 
 EXPOSE 8888
 ENTRYPOINT ["tini", "-g", "--", "start.sh"]
