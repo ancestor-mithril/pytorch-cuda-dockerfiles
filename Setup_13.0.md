@@ -68,5 +68,5 @@ docker buildx build --network=host -t cuda12.9:py3.13_torch2.8.0 .
 
 # Creating docker container
 # Select the project directory (e.g. ArtCADe)
-docker run --name pytorch_container --gpus all -d -it --ipc=host --network=host --user root -e GRANT_SUDO=yes -v ~/ArtCADe:/home/jovyan/root/data cuda12.9:py3.13_torch2.8.0
+docker run --name pytorch_container --gpus all -d -it --ipc=host --network=host --user root -e GRANT_SUDO=yes -v ~/ArtCADe:/home/jovyan/root/ cuda12.9:py3.13_torch2.8.0
 ```
