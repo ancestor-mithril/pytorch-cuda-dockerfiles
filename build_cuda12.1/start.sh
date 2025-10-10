@@ -147,7 +147,6 @@ if [ "$(id -u)" == 0 ]; then
 
     # NOTE: This hook is run as the root user!
     # shellcheck disable=SC1091
-    source /usr/local/bin/run-hooks.sh /usr/local/bin/before-notebook.d
     unset_explicit_env_vars
 
     _log "Running as ${NB_USER}:" "${cmd[@]}"
