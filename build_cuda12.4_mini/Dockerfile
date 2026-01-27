@@ -108,7 +108,7 @@ HEALTHCHECK  --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 USER ${NB_UID}
 WORKDIR ${HOME}
-RUN pip install torch torchvision torchaudio && pip install timm && \
+RUN pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124 && pip install timm && \
         conda install --yes tensorboard wandb einops transformers && \
         conda update --all --yes && \
         conda clean --all -f -y && \
