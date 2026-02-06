@@ -78,7 +78,7 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         rm ~/miniconda.sh && \
         source ${CONDA_DIR}/etc/profile.d/conda.sh && \
         conda activate && \
-        conda install -y python=3.13 && \
+        conda install -y python=3.14 && \
         conda update --all --yes && \
         conda install -c conda-forge numpy ipython notebook jupyterhub jupyterlab jupyter_contrib_nbextensions seaborn ipywidgets opencv --yes && \
         jupyter notebook --generate-config && \
@@ -86,7 +86,7 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         conda clean --all -f -y && \
         rm -rf ${HOME}/.cache/yarn && \
         npm cache clean --force && \
-        pip install torch torchvision --index-url https://download.pytorch.org/whl/cu129 --no-cache-dir && pip install timm && pip cache purge && \
+        pip install torch==2.8.0 torchvision --index-url https://download.pytorch.org/whl/cu129 --no-cache-dir && pip install timm && pip cache purge && \
         conda install --yes tensorboard wandb einops transformers scipy scikit-image && \
         conda update --all --yes && \
         conda clean --all -f -y && \
