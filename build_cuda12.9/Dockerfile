@@ -78,7 +78,7 @@ RUN curl -fsSL -v -o ~/miniconda.sh -O  "https://github.com/conda-forge/miniforg
         rm ~/miniconda.sh && \
         source ${CONDA_DIR}/etc/profile.d/conda.sh && \
         conda activate && \
-        conda install -y python=3.14 && \
+        conda install -y python=3.13 && \
         conda update --all --yes && \
         conda install -c conda-forge numpy ipython notebook jupyterhub jupyterlab jupyter_contrib_nbextensions seaborn ipywidgets opencv --yes && \
         jupyter notebook --generate-config && \
